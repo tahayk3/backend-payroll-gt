@@ -43,6 +43,7 @@ DJANGO_APPS = [
 # Se definen las aplicaciones del proyecto
 PROJECT_APPS = [
     # 'apps.company'
+    'apps.payrolls',
 ]
 
 # Se definen las aplicaciones de terceros
