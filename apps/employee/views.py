@@ -7,6 +7,8 @@ from rest_framework import viewsets, permissions, status
 """ MODELS """
 from .models import Employee
 from .models import EmployeeDocument, FamilyMember
+from rest_framework import viewsets, permissions
+from .serializers import EmployeeSerializer, SalaryIncreaseSerializer
 from .models import Employee, SalaryIncrease
 
 """ SERIALIZERS """
