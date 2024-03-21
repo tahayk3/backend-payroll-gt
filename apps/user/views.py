@@ -7,7 +7,7 @@ from rest_framework import status
 from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import make_password
 from django.shortcuts import get_object_or_404
-
+from apps.company.models import Company
 
 
 class UserApi(APIView):
@@ -18,6 +18,7 @@ class UserApi(APIView):
     Args:
         APIView: Clase base para todas las vistas de la API de Django Rest Framework.
     """
+
     def get(self, request):
         """
         Esta función obtiene todos los usuarios de la base de datos y los serializa
@@ -26,6 +27,7 @@ class UserApi(APIView):
         Returns:
             Response: Un objeto de respuesta con la lista de usuarios y un estado HTTP 200 OK.
         """
+        
         users = User.objects.all()
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)

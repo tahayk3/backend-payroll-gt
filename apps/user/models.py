@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from apps.company.models import Company
 
 class User(AbstractUser):
     """
@@ -16,12 +17,12 @@ class User(AbstractUser):
     role = models.CharField(max_length=50, null=True)
     picture = models.TextField(blank= True, null=True)
     password = models.CharField(max_length=50, blank=True, null=True)
-    company = models.PositiveBigIntegerField(null=True) #agregar FK.
+    company = models.ForeignKey(Company,on_delete=models.CASCADE,related_name='user', null=True)
     is_active = models.BooleanField(default=True)
     is_default_password = models.BooleanField(default=True) 
 
 
-    def create_user_admin(self, email, password, username, instance_company= None):
+    def create_user_admin(self, email, password, instance_company):
         """
         Este método crea un nuevo usuario con el rol de 'admin' y asigna los valores
         proporcionados para el email, contraseña, nombre de usuario y compañía.
@@ -31,7 +32,7 @@ class User(AbstractUser):
         """
         self.company = instance_company
         self.email = email
-        self.username = username
+        self.username = instance_company.name
         self.role = 'admin'
         self.is_default_password = False
         self.set_password(password)
