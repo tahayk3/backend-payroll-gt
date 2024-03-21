@@ -13,14 +13,19 @@ bower_components/
 # Archivo de base de datos local
 db.sqlite3
 
-# Archivos de registro de errores y otros archivos de salida
-logs/
-*.log
 
-# Directorio de archivos de dependencias de Python
-venv/
-env/
-__pycache__/
+gitignore:
+  - .gitignore
+  - .git/
+  - .idea/
+  - .vscode/
+  - __pycache__/
+  - venv/
+  - .venv/
+  - .gitignore
+  - .git/
+  - .idea/
+  - .vscode/
+  - __pycache__/
+  - venv/
 
-# Archivos de respaldo de tu editor de texto
-*~
