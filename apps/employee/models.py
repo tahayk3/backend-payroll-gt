@@ -1,7 +1,11 @@
 from django.db import models
 
-# Create your models here.
+# Employee 
+
 class Employee(models.Model):
+
+    """Employee Model"""
+   
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     phone = models.CharField(max_length=20)
@@ -29,11 +33,32 @@ class Employee(models.Model):
     
 
 class SalaryIncrease(models.Model):
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='salary_increase_employee') #ForeignKey
+
+    """Salary Increase Model"""
+
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE) #ForeignKey
     amount = models.IntegerField()
     reason = models.CharField(max_length=200)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.employee}"
+        return f"{self.reason}"
+    
+    def apply_increase(self):
+        super().save()
+        self.employee.base_salary += self.amount
+        self.employee.save()
+
+
+class Department(models.Model):
+
+    """Department Model"""
+
+    name = models.CharField(max_length=100)
+    description = models.CharField(max_length=200)
+    company = models.IntegerField() #ForeignKey
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f"{self.name}"
