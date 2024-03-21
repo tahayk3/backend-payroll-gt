@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Employee
+from .models import Employee, SalaryIncrease
 
 class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -18,6 +18,7 @@ class SalaryIncreaseSerializer(serializers.ModelSerializer):
                   'amount', 
                   'reason']
         
-        read_only_fields = ['created_at',]
+        def create(self, validated_data):
+            return SalaryIncrease.objects.create(**validated_data)
         
         

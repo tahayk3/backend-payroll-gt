@@ -32,7 +32,7 @@ class SalaryIncrease(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='salary_increase_employee') #ForeignKey
     amount = models.IntegerField()
     reason = models.CharField(max_length=200)
-    is_active = models.BooleanField()
+    is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
