@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import viewsets, permissions
-from .serializer import EmployeeSerializer, SalaryIncreaseSerializer
+from .serializers import EmployeeSerializer, SalaryIncreaseSerializer
 from .models import Employee, SalaryIncrease
 
 
