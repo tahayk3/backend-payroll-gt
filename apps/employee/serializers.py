@@ -36,3 +36,26 @@ class FamilyMemberSerializer(serializers.ModelSerializer):
             'is_active'
         ]
         read_only_fields = ['id']
+from .models import Employee, SalaryIncrease
+
+class EmployeeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Employee
+        fields = '__all__'
+        
+        
+        def create(self, validated_data):
+            return Employee.objects.create(**validated_data)
+
+
+class SalaryIncreaseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Employee
+        fields = ['employee', 
+                  'amount', 
+                  'reason']
+        
+        def create(self, validated_data):
+            return SalaryIncrease.objects.create(**validated_data)
+        
+        

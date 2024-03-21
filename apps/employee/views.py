@@ -1,11 +1,17 @@
-from urllib import response
-from .models import EmployeeDocument, FamilyMember
+from rest_framework.response import Response
+
 from .serializers import EmployeeDocumentSerializer, FamilyMemberSerializer
 from django.shortcuts import render
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions, status
 
-from .serializer import EmployeeSerializer
+""" MODELS """
 from .models import Employee
+from .models import EmployeeDocument, FamilyMember
+from .models import Employee, SalaryIncrease
+
+""" SERIALIZERS """
+from .serializers import EmployeeSerializer
+from .serializers import EmployeeSerializer, SalaryIncreaseSerializer
 
 
 class EmployeeDocumentsViewSet(viewsets.ModelViewSet):
@@ -20,7 +26,7 @@ class EmployeeDocumentsViewSet(viewsets.ModelViewSet):
         # Validar si el empleado existe
         employee_id = request.data.get('employee')
         if not Employee.objects.filter(id=employee_id).exists():
-            return response({'error': 'El empleado especificado no existe'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'El empleado especificado no existe'}, status=status.HTTP_400_BAD_REQUEST)
         return super().create(request, *args, **kwargs)
 
 
@@ -44,5 +50,11 @@ class EmployeeViewSet(viewsets.ModelViewSet):
     queryset = Employee.objects.all()
     permission_classes = [permissions.AllowAny] #Cambiar a IsAuthenticated
     serializer_class = EmployeeSerializer
+    
+
+class SalaryIncreaseViewSet(viewsets.ModelViewSet):
+    queryset = SalaryIncrease.objects.all()
+    permission_classes = [permissions.AllowAny] #Cambiar a IsAuthenticated
+    serializer_class = SalaryIncreaseSerializer
 
    
