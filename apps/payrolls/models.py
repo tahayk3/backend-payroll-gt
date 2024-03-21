@@ -53,3 +53,33 @@ class TransferCash(models.Model):
 
     def __str__(self):
         return f"TransferCash: {self.id} - Employee ID: {self.employee}"
+
+
+class PayrollDeduction(models.Model):
+    """Payroll Deduction model"""
+    employee = models.IntegerField(default=0, blank=True)  # ID del empleado
+    type_concept = models.CharField(max_length=255)
+    quantity = models.PositiveIntegerField()
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    reason = models.CharField(max_length=255)
+    total = models.DecimalField(max_digits=10, decimal_places=2)
+    date = models.DateTimeField()
+    payroll_period = models.ForeignKey(PayrollPeriod, on_delete=models.CASCADE)  # Clave foránea a PayrollPeriod
+
+    def __str__(self):
+        return f"PayrollDeduction: {self.id} - Employee ID: {self.employee}"
+    
+    
+class PayrollIncome(models.Model):
+    """Payroll Income model"""
+    employee = models.IntegerField(default=0, blank=True)  # ID del empleado
+    type_concept = models.CharField(max_length=255)
+    quantity = models.PositiveIntegerField()
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    reason = models.CharField(max_length=255)
+    total = models.DecimalField(max_digits=10, decimal_places=2)
+    date = models.DateTimeField()
+    payroll_period = models.ForeignKey(PayrollPeriod, on_delete=models.CASCADE)  # Clave foránea a PayrollPeriod
+
+    def __str__(self):
+        return f"PayrollIncome: {self.id} - Employee ID: {self.employee}"
