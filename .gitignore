@@ -1,0 +1,26 @@
+
+# Archivos de configuración local
+*.env
+*.pyc
+
+# Directorio de archivos estáticos generados
+staticfiles/
+
+# Directorio de archivos de compilación
+node_modules/
+bower_components/
+
+# Archivo de base de datos local
+db.sqlite3
+
+# Archivos de registro de errores y otros archivos de salida
+logs/
+*.log
+
+# Directorio de archivos de dependencias de Python
+venv/
+env/
+__pycache__/
+
+# Archivos de respaldo de tu editor de texto
+*~
