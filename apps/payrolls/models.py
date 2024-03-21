@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class PayrollPeriod(models.Model):
     """Payroll Period model"""
     name = models.CharField(max_length=100)
@@ -83,3 +84,35 @@ class PayrollIncome(models.Model):
 
     def __str__(self):
         return f"PayrollIncome: {self.id} - Employee ID: {self.employee}"
+
+
+class Payroll(models.Model):
+    """Payroll model"""
+    company = models.IntegerField(default=0) # company
+    payroll_period = models.ForeignKey(PayrollPeriod, on_delete=models.CASCADE)
+
+    date_generated = models.DateTimeField()
+    total = models.IntegerField()
+    is_open = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+class PayrollConcept(models.Model):
+    """Payroll Concept model"""
+    concept = models.CharField(max_length=100)
+
+    employee = models.IntegerField(default=0) # foreign key
+    payroll_period = models.ForeignKey(PayrollPeriod, on_delete=models.CASCADE)
+    company = models.IntegerField(default=0) # foreign key
+
+    date = models.DateTimeField()
+    reason = models.CharField(max_length=100)
+    overtime_minutes = models.IntegerField(default=0)
+    public_holiday = models.BooleanField(default=False)
+    sales = models.IntegerField()
+    production = models.IntegerField()
+    amount = models.IntegerField()
+    is_cancelled = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
