@@ -2,6 +2,7 @@
 FROM python:3.6-alpine
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
+
 RUN apk update \
   # psycopg2 dependencies
   && apk add --virtual build-deps gcc python3-dev musl-dev \

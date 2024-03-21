@@ -1,0 +1,15 @@
+gitignore:
+  - .gitignore
+  - .git/
+  - .idea/
+  - .vscode/
+  - __pycache__/
+  - venv/
+  - .venv/
+  - .gitignore
+  - .git/
+  - .idea/
+  - .vscode/
+  - __pycache__/
+  - venv/
+
