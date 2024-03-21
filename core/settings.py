@@ -38,6 +38,7 @@ DJANGO_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
+    'apps.company',
 ]
 
 # Se definen las aplicaciones del proyecto
