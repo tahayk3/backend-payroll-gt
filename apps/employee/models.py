@@ -5,6 +5,15 @@ from apps.user.models import User
 
 # Employee 
 
+class JobPositionModel(models.Model):
+    name = models.CharField( max_length=150)
+    description = models.CharField(max_length=200)
+    company = models.IntegerField()
+    is_active = models.BooleanField()
+    
+    def __str__(self):
+        return f"{self.name}"
+
 class Department(models.Model):
 
     """Department Model"""
@@ -41,7 +50,7 @@ class Employee(models.Model):
     bank = models.CharField(max_length=100)
     account_number = models.CharField(max_length=100)
     department = models.ForeignKey(Department, on_delete=models.CASCADE) #ForeignKey
-    job_position = models.IntegerField() #ForeignKey
+    job_position = models.ForeignKey(JobPositionModel, on_delete=models.CASCADE) #ForeignKey
     user = models.ForeignKey(User, on_delete=models.CASCADE) #ForeignKey
     company = models.ForeignKey(Company, on_delete=models.CASCADE)#ForeignKey
     is_active = models.BooleanField(default=True)
@@ -97,14 +106,6 @@ class SalaryIncrease(models.Model):
     def __str__(self):
         return f"{self.reason}"
     
-class JobPositionModel(models.Model):
-    name = models.CharField( max_length=150)
-    description = models.CharField(max_length=200)
-    company = models.IntegerField()
-    is_active = models.BooleanField()
-    
-    def __str__(self):
-        return f"{self.name}"
     
 class RequestAbsenceModel(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE) 
