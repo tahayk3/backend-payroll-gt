@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import EmployeeDocument, FamilyMember, Employee, SalaryIncrease, Department
+from .models import EmployeeDocument, FamilyMember, Employee, SalaryIncrease, Department, JobPositionModel,RequestAbsenceModel
 
 
 class EmployeeDocumentSerializer(serializers.ModelSerializer):
@@ -78,4 +78,19 @@ class DepartmentSerializer(serializers.ModelSerializer):
         
         
         
+class JobPositionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = JobPositionModel        
+        fields =[ 'name', 'description', 'company', 'is_active']
+
+        def create(self, validate_data):
+            return JobPositionModel.objects.create(**validate_data)
+
+class RequestAbsenceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RequestAbsenceModel
+        fields = '__all__'
+
+        def create(self, validated_data):
+            return RequestAbsenceModel.object.create(**validated_data)
         
