@@ -8,9 +8,10 @@ from apps.services.cms import CMS
 class EmployeeCMSAPIView(APIView):
 
     def get(self, request):
-        response = CMS().get_data(
+        response = CMS.get_data(
             querystring={
                 "starts_with": "employees",
             }
         )
-        return Response(response, status=response.get("status_code", 200))
+        status_code = response.pop("status_code", 200)
+        return Response(response, status=status_code)

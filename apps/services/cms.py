@@ -30,7 +30,9 @@ class CMS:
             if response.ok:
                 serialized = CMSResponseSerializer(data=response.json())
                 if serialized.is_valid(raise_exception=True):
-                    return serialized.validated_data["stories"]
+                    data = serialized.validated_data["stories"]
+                    data.update({"status_code": response.status_code})
+                    return data
             else:
                 return {
                     "message": response.reason,
