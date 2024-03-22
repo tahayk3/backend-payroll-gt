@@ -13,6 +13,8 @@ router.register(r'familyMember', views.FamilyMembersViewSet, basename='familyMem
 router.register(r'employees', views.EmployeeViewSet)
 router.register(r'salary-increase', views.SalaryIncreaseViewSet)
 router.register(r'departments', views.DepartmentViewSet)
+router.register(r'jobPosition', views.JobPositionViewSet, basename='jobposition')
+router.register(r'requestAbsence', views.RequestAbsenceViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

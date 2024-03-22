@@ -97,4 +97,26 @@ class SalaryIncrease(models.Model):
     def __str__(self):
         return f"{self.reason}"
     
+class JobPositionModel(models.Model):
+    name = models.CharField( max_length=150)
+    description = models.CharField(max_length=200)
+    company = models.IntegerField()
+    is_active = models.BooleanField()
+    
+    def __str__(self):
+        return f"{self.name}"
+    
+class RequestAbsenceModel(models.Model):
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE) 
+    company = models.IntegerField() #FK 
+    start_date = models.DateField()
+    end_date = models.DateField()
+    reason = models.CharField( max_length=200)
+    status = models.CharField(max_length=100)
+    is_active = models.BooleanField()
+    created_at = models.DateTimeField( auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.reason}"
+    
     
