@@ -3,10 +3,12 @@ from rest_framework import viewsets
 
 # serializers
 from apps.payrolls.serializers import (PayrollPeriodSerializer, PayrollDeductionSerializer,
-                                       PayrollIncomeSerializer, PayrollSerializer, PayrollConceptSerializer)
+                                       PayrollIncomeSerializer, PayrollSerializer, PayrollConceptSerializer, 
+                                       TransferBankSerializer, TransferCashSerializer,
+                                       PayrollAccountingTransactionSerializer, )
 
 # models
-from apps.payrolls.models import PayrollPeriod, PayrollDeduction, PayrollIncome, Payroll, PayrollConcept
+from apps.payrolls.models import PayrollPeriod, PayrollDeduction, PayrollIncome, Payroll, PayrollConcept, TransferCash, TransferBank, PayrollAccountingTransaction
 
 
 class PayrollPeriodViewSet(viewsets.ModelViewSet):
@@ -37,3 +39,19 @@ class PayrollConceptViewSet(viewsets.ModelViewSet):
     """Payroll concept view set """
     serializer_class = PayrollConceptSerializer
     queryset = PayrollConcept.objects.all()
+
+
+class TransferCashViewSet(viewsets.ModelViewSet):
+    """Transfer cash view set"""
+    serializer_class = TransferCashSerializer
+    queryset = TransferCash.objects.all()
+
+class TransferBankViewSet(viewsets.ModelViewSet):
+    """Transfer bank view set"""
+    serializer_class = TransferBankSerializer
+    queryset = TransferBank.objects.all()
+
+class PayrollAccountingTransactionViewSet(viewsets.ModelViewSet):
+    """Payroll accounting transaction view set"""
+    serializer_class = PayrollAccountingTransactionSerializer
+    queryset = PayrollAccountingTransaction.objects.all()

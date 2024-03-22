@@ -1,12 +1,9 @@
-# django
 from django.urls import path, include
-
-# rest framework
 from rest_framework.routers import DefaultRouter
-
-# view sets
 from apps.payrolls.views import (PayrollPeriodViewSet, PayrollDeductionViewSet,
-                                 PayrollIncomeViewSet, PayrollViewSet, PayrollConceptViewSet)
+                                 PayrollIncomeViewSet, PayrollViewSet, PayrollConceptViewSet,
+                                 TransferCashViewSet, TransferBankViewSet, 
+                                 PayrollAccountingTransactionViewSet)
 
 router = DefaultRouter()
 
@@ -38,6 +35,24 @@ router.register(
     r'payroll-concepts',
     PayrollConceptViewSet,
     basename='payroll-concepts'
+)
+
+router.register(
+    r'transfer-cash',
+    TransferCashViewSet,
+    basename='transfer-cash'
+)
+
+router.register(
+    r'transfer-bank',
+    TransferBankViewSet,
+    basename='transfer-bank'
+)
+
+router.register(
+    r'payroll-accounting-transactions',
+    PayrollAccountingTransactionViewSet,
+    basename='payroll-accounting-transactions'
 )
 
 urlpatterns = [

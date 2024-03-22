@@ -2,7 +2,7 @@
 from rest_framework import serializers
 
 # models
-from apps.payrolls.models import PayrollPeriod, PayrollDeduction, PayrollIncome, Payroll, PayrollConcept
+from apps.payrolls.models import TransferCash, TransferBank, PayrollAccountingTransaction, PayrollPeriod, PayrollDeduction, PayrollIncome, Payroll, PayrollConcept
 
 
 class PayrollPeriodSerializer(serializers.ModelSerializer):
@@ -47,4 +47,31 @@ class PayrollConceptSerializer(serializers.ModelSerializer):
     class Meta:
         """Meta class"""
         model = PayrollConcept
+        fields = '__all__'
+
+
+class PayrollAccountingTransactionSerializer(serializers.ModelSerializer):
+    """Payroll accounting transaction serializer"""
+
+    class Meta:
+        """Meta class"""
+        model = PayrollAccountingTransaction
+        fields = '__all__'
+
+
+class TransferBankSerializer(serializers.ModelSerializer):
+    """Transfer bank serializer"""
+
+    class Meta:
+        """Meta class"""
+        model = TransferCash
+        fields = '__all__'
+
+
+class TransferCashSerializer(serializers.ModelSerializer):
+    """Transfer cash serializer"""
+
+    class Meta:
+        """Meta class"""
+        model = TransferCash
         fields = '__all__'
