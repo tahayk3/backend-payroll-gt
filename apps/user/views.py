@@ -4,6 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import make_password
 from django.shortcuts import get_object_or_404
@@ -101,7 +102,8 @@ class Login(APIView):
         user = authenticate(email=email, password=password)
 
         if user is not None:
-            return Response({"message": "Login successful"}, status=status.HTTP_200_OK)
+            token = Token.objects.create(user=user)
+            return Response({"message": "Login successful", "token": token.key}, status=status.HTTP_200_OK)
         else:
             return Response({"message": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
         
@@ -130,9 +132,10 @@ class ResetPassword(APIView):
         if password != confirm_password:
             return Response({"message": "Passwords do not match"}, status=status.HTTP_400_BAD_REQUEST)
         
+        token = Token.objects.create(user=user)
         user.password = make_password(password)
         user.save()
         
-        return Response({"message": "Successful password change"}, status=status.HTTP_204_NO_CONTENT)
+        return Response({"message": "Successful password change", "token": token.key}, status=status.HTTP_204_NO_CONTENT)
 
 
