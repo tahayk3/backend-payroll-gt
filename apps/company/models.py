@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import RegexValidator
 
 class Company(models.Model):
+    
     name = models.CharField(
         'name company',
         unique = True,

@@ -11,10 +11,10 @@ router = routers.DefaultRouter()
 router.register(r'employeeDocuments', views.EmployeeDocumentsViewSet, basename = 'empoyeeDocuments')
 router.register(r'familyMember', views.FamilyMembersViewSet, basename='familyMember')
 router.register(r'employees', views.EmployeeViewSet)
-router.register(r'employees', views.EmployeeViewSet)
 router.register(r'salary-increase', views.SalaryIncreaseViewSet)
 router.register(r'departments', views.DepartmentViewSet)
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('', include(router.urls)),
+
 ]

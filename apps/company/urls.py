@@ -11,5 +11,5 @@ router = DefaultRouter()
 router.register(r'company', CompanyViewSet, basename='company')
 
 urlpatterns = [
-    path('api/v1/', include(router.urls))
+    path('', include(router.urls))
 ]

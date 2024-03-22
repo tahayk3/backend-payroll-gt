@@ -1,5 +1,7 @@
 from django.db import models
 from core.utils.models import BaseModel
+from apps.company.models import Company
+from apps.user.models import User
 
 # Employee 
 
@@ -9,7 +11,7 @@ class Department(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=200)
-    company = models.IntegerField() #ForeignKey
+    company = models.ForeignKey(Company, on_delete=models.CASCADE) #ForeignKey
     is_active = models.BooleanField(default=True)
     
 
@@ -40,8 +42,8 @@ class Employee(models.Model):
     account_number = models.CharField(max_length=100)
     department = models.ForeignKey(Department, on_delete=models.CASCADE) #ForeignKey
     job_position = models.IntegerField() #ForeignKey
-    user = models.IntegerField() #ForeignKey
-    company = models.IntegerField() #ForeignKey
+    user = models.ForeignKey(User, on_delete=models.CASCADE) #ForeignKey
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)#ForeignKey
     is_active = models.BooleanField(default=True)
 
 
