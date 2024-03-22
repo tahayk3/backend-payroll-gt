@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """core URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -14,6 +15,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
+=======
+>>>>>>> feature/module-employee
 from django.contrib import admin
 from django.urls import path, include
 
@@ -21,5 +24,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(('apps.payrolls.urls', 'payrolls'), namespace='payrolls')),
     path('api/v1/', include('apps.employee.urls')),
+<<<<<<< HEAD
     path("", include(("apps.services.urls", "services"))),
 ]
+=======
+    path('api/v1/', include('apps.company.urls')),
+    path('api/v1/', include('apps.user.urls')),
+]
+
+>>>>>>> feature/module-employee

@@ -25,8 +25,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='secret!')
 
 ALLOWED_HOSTS = ['*']
 
-#definir el modelo de usuario 
-#AUTH_USER_MODEL = "user.User"
+
 
 DJANGO_APPS = [
     'django.contrib.admin',
@@ -35,14 +34,27 @@ DJANGO_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+<<<<<<< HEAD
     'corsheaders',
+=======
+    'apps.employee',
+    'corsheaders',
+    'apps.user',
+    'apps.company',
+    # 'rest_framework',
+    # 'apps.company',
+>>>>>>> feature/module-employee
 ]
 
 # Se definen las aplicaciones del proyecto
 PROJECT_APPS = [
+<<<<<<< HEAD
     # 'apps.company'
     'apps.payrolls',
     'apps.employee',
+=======
+
+>>>>>>> feature/module-employee
 ]
 
 # Se definen las aplicaciones de terceros
@@ -86,7 +98,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-DEBUG = bool(os.environ.get('DEBUG', False))
+DEBUG = bool(os.environ.get('DEBUG', True))
 
 if DEBUG:
     # Configuración de la base de datos para entorno de desarrollo
@@ -100,7 +112,7 @@ else:
     # Configuración de la base de datos para entorno de producción
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ.get("DB_NAME"),
         'USER': os.environ.get("DB_USER"),
         'PASSWORD': os.environ.get("DB_PASSWORD"),
@@ -108,37 +120,45 @@ else:
         'PORT': os.environ.get("DB_PORT"),
         }
     }
-            #agregar cuando este en true
+    #agregar cuando este en true
 
 # Se configuran las opciones de CORS
+<<<<<<< HEAD
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     'http://127.0.0.1:5173',
     'http://localhost:3000',
     'http://127.0.0.1:3000',
 ]
+=======
+    CORS_ALLOWED_ORIGINS = [
+        
+        'http://localhost:3000',
+        'http://127.0.0.1:3000',
+    ]
+>>>>>>> feature/module-employee
 
 
-CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000',
-    'http://localhost:8000',
-    'http://127.0.0.1:8000',
-    'http://127.0.0.1:3000',
-]
+    CORS_ORIGIN_WHITELIST = [
+        'http://localhost:3000',
+        'http://localhost:8000',
+        'http://127.0.0.1:8000',
+        'http://127.0.0.1:3000',
+    ]
 
-CSRF_TRUSTED_ORIGINS = [
-    'http://localhost:3000',
-    'http://localhost:8000',
-    'http://127.0.0.1:8000',
-    'http://127.0.0.1:3000',
-]
+    CSRF_TRUSTED_ORIGINS = [
+        'http://localhost:3000',
+        'http://localhost:8000',
+        'http://127.0.0.1:8000',
+        'http://127.0.0.1:3000',
+    ]
 
-PASSWORD_HASHERS = [
-    "django.contrib.auth.hashers.Argon2PasswordHasher",
-    "django.contrib.auth.hashers.PBKDF2PasswordHasher",
-    "django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher",
-    "django.contrib.auth.hashers.BCryptSHA256PasswordHasher",
-]
+    PASSWORD_HASHERS = [
+        "django.contrib.auth.hashers.Argon2PasswordHasher",
+        "django.contrib.auth.hashers.PBKDF2PasswordHasher",
+        "django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher",
+        "django.contrib.auth.hashers.BCryptSHA256PasswordHasher",
+    ]
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -154,6 +174,13 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+]
+
+# Internationalization
+# https://docs.djangoproject.com/en/3.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -175,6 +202,7 @@ if not DEBUG:
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 12
@@ -183,3 +211,7 @@ REST_FRAMEWORK = {
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+<<<<<<< HEAD
+=======
+AUTH_USER_MODEL = 'user.User'
+>>>>>>> feature/module-employee

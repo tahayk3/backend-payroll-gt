@@ -1,10 +1,50 @@
 from rest_framework import serializers
-from .models import Employee, SalaryIncrease, Department
+from .models import EmployeeDocument, FamilyMember, Employee, SalaryIncrease, Department, JobPositionModel,RequestAbsenceModel
+
+
+class EmployeeDocumentSerializer(serializers.ModelSerializer):
+    """ Employee Document Serializer """
+    class Meta:
+        model = EmployeeDocument
+        fields = [
+            'id',
+            'name',
+            'file',
+            'employee',
+            'is_active',
+            'created',
+            'modified'
+        ]
+        read_only_fields = ['id', 'created', 'modified']
+
+
+    def create(self, validated_data):
+        """ Create Employee Document """
+        return EmployeeDocument.objects.create(**validated_data)
+
+
+class FamilyMemberSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FamilyMember
+        fields = [
+            'id',
+            'employee',
+            'first_name',
+            'last_name',
+            'relationship',
+            'gender',
+            'phone',
+            'is_active'
+        ]
+        read_only_fields = ['id']
+
 
 class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Employee
         fields = '__all__'
+
+        read_only_fields = ['id']
         
         
         def create(self, validated_data):
@@ -14,7 +54,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
 class SalaryIncreaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = SalaryIncrease
-        fields = ['employee', 'amount', 'reason']
+        fields = ['id','employee', 'amount', 'reason']
 
 
         def create(self, validated_data):
@@ -32,7 +72,7 @@ class SalaryIncreaseSerializer(serializers.ModelSerializer):
 class DepartmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Department
-        fields = ['name', 'description', 'company']
+        fields = ['id','name', 'description', 'company']
         
         
         def create(self, validated_data):
@@ -40,4 +80,19 @@ class DepartmentSerializer(serializers.ModelSerializer):
         
         
         
+class JobPositionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = JobPositionModel        
+        fields =[ 'name', 'description', 'company', 'is_active']
+
+        def create(self, validate_data):
+            return JobPositionModel.objects.create(**validate_data)
+
+class RequestAbsenceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RequestAbsenceModel
+        fields = '__all__'
+
+        def create(self, validated_data):
+            return RequestAbsenceModel.object.create(**validated_data)
         
