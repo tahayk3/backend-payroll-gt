@@ -1,16 +1,6 @@
 from django.db import models
 
-
-class PayrollPeriod(models.Model):
-    """Payroll Period model"""
-    name = models.CharField(max_length=100)
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField()
-    type = models.CharField(max_length=100)
-    company = models.IntegerField(default=0, blank=True)  # Foreign key
-    is_open = models.BooleanField(default=False)
-
-from django.db import models
+from apps.employee.models import Employee
 
 class PayrollPeriod(models.Model):
     """Payroll Period model"""
@@ -115,7 +105,7 @@ class PayrollConcept(models.Model):
     """Payroll Concept model"""
     concept = models.CharField(max_length=100)
 
-    employee = models.IntegerField(default=0) # foreign key
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE) # foreign key
     payroll_period = models.ForeignKey(PayrollPeriod, on_delete=models.CASCADE)
     company = models.IntegerField(default=0) # foreign key
 
@@ -129,5 +119,3 @@ class PayrollConcept(models.Model):
     is_cancelled = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
-
-

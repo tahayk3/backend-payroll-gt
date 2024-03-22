@@ -23,8 +23,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY', default='secret!')
 
-DEBUG = True
-
 ALLOWED_HOSTS = ['*']
 
 #definir el modelo de usuario 
@@ -44,6 +42,7 @@ DJANGO_APPS = [
 PROJECT_APPS = [
     # 'apps.company'
     'apps.payrolls',
+    'apps.employee',
 ]
 
 # Se definen las aplicaciones de terceros
@@ -113,7 +112,8 @@ else:
 
 # Se configuran las opciones de CORS
 CORS_ALLOWED_ORIGINS = [
-    
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
     'http://localhost:3000',
     'http://127.0.0.1:3000',
 ]
@@ -182,3 +182,4 @@ REST_FRAMEWORK = {
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
