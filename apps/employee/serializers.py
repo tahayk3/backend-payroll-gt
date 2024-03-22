@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import EmployeeDocument, FamilyMember
+from .models import EmployeeDocument, FamilyMember, Employee, SalaryIncrease, Department
 
 
 class EmployeeDocumentSerializer(serializers.ModelSerializer):
@@ -16,6 +16,7 @@ class EmployeeDocumentSerializer(serializers.ModelSerializer):
             'modified'
         ]
         read_only_fields = ['id', 'created', 'modified']
+
 
     def create(self, validated_data):
         """ Create Employee Document """
@@ -36,7 +37,7 @@ class FamilyMemberSerializer(serializers.ModelSerializer):
             'is_active'
         ]
         read_only_fields = ['id']
-from .models import Employee, SalaryIncrease, Department
+
 
 class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -51,7 +52,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
 class SalaryIncreaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = SalaryIncrease
-        fields = ['employee', 'amount', 'reason']
+        fields = ['id','employee', 'amount', 'reason']
 
 
         def create(self, validated_data):
@@ -69,7 +70,7 @@ class SalaryIncreaseSerializer(serializers.ModelSerializer):
 class DepartmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Department
-        fields = ['name', 'description', 'company']
+        fields = ['id','name', 'description', 'company']
         
         
         def create(self, validated_data):

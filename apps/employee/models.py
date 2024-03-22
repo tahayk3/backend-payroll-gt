@@ -1,19 +1,27 @@
 from django.db import models
+from core.utils.models import BaseModel
 
-<<<<<<< HEAD
 # Employee 
+
+class Department(models.Model):
+
+    """Department Model"""
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100)
+    description = models.CharField(max_length=200)
+    company = models.IntegerField() #ForeignKey
+    is_active = models.BooleanField(default=True)
+    
+
+    def __str__(self):
+        return f"{self.name}"
+    
 
 class Employee(models.Model):
 
     """Employee Model"""
-   
-=======
-from core.utils.models import BaseModel
-
-# Create your models here.
-class Employee(models.Model):
+    
     id = models.AutoField(primary_key=True)
->>>>>>> 0bd734bb63c888c0e2deb91427906ab724c83bfa
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     phone = models.CharField(max_length=20)
@@ -30,22 +38,16 @@ class Employee(models.Model):
     method_payment = models.CharField(max_length=100)
     bank = models.CharField(max_length=100)
     account_number = models.CharField(max_length=100)
-    department = models.IntegerField() #ForeignKey
+    department = models.ForeignKey(Department, on_delete=models.CASCADE) #ForeignKey
     job_position = models.IntegerField() #ForeignKey
     user = models.IntegerField() #ForeignKey
     company = models.IntegerField() #ForeignKey
-    is_active = models.BooleanField()
-    department = models.IntegerField(default=1) #ForeignKey
-    job_position = models.IntegerField(default=1) #ForeignKey
-    user = models.IntegerField(default=3) #ForeignKey 
-    company = models.IntegerField(default=1) #ForeignKey
     is_active = models.BooleanField(default=True)
+
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
     
-
-
 
 class EmployeeDocument(BaseModel):
     """ Employee Documents model"""
@@ -56,8 +58,10 @@ class EmployeeDocument(BaseModel):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)  # ForeignKey
     is_active = models.BooleanField(default=True)
 
+
     def __str__(self):
         return f"{self.name}"
+
 
 
 class FamilyMember(BaseModel):
@@ -72,35 +76,23 @@ class FamilyMember(BaseModel):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)# ForeignKey
     is_active = models.BooleanField(default=True)
 
+
     def __str__(self):
         return f"{self._first_name}{self.last_name}"
+    
+    
 class SalaryIncrease(models.Model):
 
     """Salary Increase Model"""
-
+    id = models.AutoField(primary_key=True)
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE) #ForeignKey
     amount = models.IntegerField()
     reason = models.CharField(max_length=200)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+
     def __str__(self):
         return f"{self.reason}"
     
-    def apply_increase(self):
-        super().save()
-        self.employee.base_salary += self.amount
-        self.employee.save()
-
-
-class Department(models.Model):
-
-    """Department Model"""
-
-    name = models.CharField(max_length=100)
-    description = models.CharField(max_length=200)
-    company = models.IntegerField() #ForeignKey
-    is_active = models.BooleanField(default=True)
-
-    def __str__(self):
-        return f"{self.name}"
+    
