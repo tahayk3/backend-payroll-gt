@@ -102,10 +102,11 @@ class Login(APIView):
         user = authenticate(email=email, password=password)
 
         if user is not None:
+            Token.objects.filter(user=user).delete()
             token = Token.objects.create(user=user)
-            return Response({"message": "Login successful", "token": token.key}, status=status.HTTP_200_OK)
+            return Response({"token": token.key}, status=status.HTTP_200_OK)
         else:
-            return Response({"message": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
+            return Response({"message": "Invalid credentials"}, status=status.HTTP_404_NOT_FOUND)
         
 
 class ResetPassword(APIView):
@@ -132,6 +133,7 @@ class ResetPassword(APIView):
         if password != confirm_password:
             return Response({"message": "Passwords do not match"}, status=status.HTTP_400_BAD_REQUEST)
         
+        Token.objects.filter(user=user).delete()
         token = Token.objects.create(user=user)
         user.password = make_password(password)
         user.save()

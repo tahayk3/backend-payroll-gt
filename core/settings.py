@@ -39,8 +39,6 @@ DJANGO_APPS = [
     'corsheaders',
     'apps.user',
     'apps.company',
-    # 'rest_framework',
-    # 'apps.company',
 ]
 
 # Se definen las aplicaciones del proyecto
@@ -114,33 +112,33 @@ else:
     #agregar cuando este en true
 
 # Se configuran las opciones de CORS
-    CORS_ALLOWED_ORIGINS = [
-        
-        'http://localhost:3000',
-        'http://127.0.0.1:3000',
-    ]
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+]
 
 
-    CORS_ORIGIN_WHITELIST = [
-        'http://localhost:3000',
-        'http://localhost:8000',
-        'http://127.0.0.1:8000',
-        'http://127.0.0.1:3000',
-    ]
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+    'http://127.0.0.1:3000',
+]
 
-    CSRF_TRUSTED_ORIGINS = [
-        'http://localhost:3000',
-        'http://localhost:8000',
-        'http://127.0.0.1:8000',
-        'http://127.0.0.1:3000',
-    ]
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:3000',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+    'http://127.0.0.1:3000',
+]
 
-    PASSWORD_HASHERS = [
-        "django.contrib.auth.hashers.Argon2PasswordHasher",
-        "django.contrib.auth.hashers.PBKDF2PasswordHasher",
-        "django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher",
-        "django.contrib.auth.hashers.BCryptSHA256PasswordHasher",
-    ]
+PASSWORD_HASHERS = [
+    "django.contrib.auth.hashers.Argon2PasswordHasher",
+    "django.contrib.auth.hashers.PBKDF2PasswordHasher",
+    "django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher",
+    "django.contrib.auth.hashers.BCryptSHA256PasswordHasher",
+]
 
 AUTH_PASSWORD_VALIDATORS = [
     {
