@@ -14,24 +14,25 @@ class PayrollPeriod(models.Model):
     def __str__(self):
         return self.name
 
+
 class PayrollAccountingTransaction(models.Model):
     """Payroll Accounting Transaction model"""
-    employee = models.IntegerField()  # ID del empleado
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)  # Usamos ForeignKey para relacionar con Employee
     type_concept = models.CharField(max_length=255)
     quantity = models.IntegerField()
     amount = models.IntegerField()
     reason = models.CharField(max_length=255)
     total = models.IntegerField()
     date = models.DateTimeField()
-    payroll_period = models.ForeignKey(PayrollPeriod, on_delete=models.CASCADE)  # Clave foránea a PayrollPeriod
+    payroll_period = models.ForeignKey(PayrollPeriod, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"PayrollAccountingTransaction: {self.id} - Employee ID: {self.employee}"
+        return f"PayrollAccountingTransaction: {self.id} - Employee: {self.employee}"
 
 
 class TransferBank(models.Model):
     """Transfer Bank model"""
-    employee = models.IntegerField()  # ID del empleado
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)  # Usamos ForeignKey para relacionar con Employee
     date = models.DateTimeField()
     bank = models.CharField(max_length=100)
     account_number = models.CharField(max_length=100)
@@ -39,24 +40,28 @@ class TransferBank(models.Model):
     amount = models.IntegerField()
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    payroll_period = models.ForeignKey(PayrollPeriod, on_delete=models.CASCADE)  # Clave foránea a PayrollPeriod
+    payroll_period = models.ForeignKey(PayrollPeriod, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"TransferBank: {self.id} - Employee ID: {self.employee}"
+        return f"TransferBank: {self.id} - Employee: {self.employee}"
 
 
 class TransferCash(models.Model):
     """Transfer Cash model"""
-    employee = models.IntegerField()  # ID del empleado
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)  # Usamos ForeignKey para relacionar con Employee
     date = models.DateTimeField()
     reason = models.CharField(max_length=255)
     amount = models.IntegerField()
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    payroll_period = models.ForeignKey(PayrollPeriod, on_delete=models.CASCADE)  # Clave foránea a PayrollPeriod
+    payroll_period = models.ForeignKey(PayrollPeriod, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"TransferCash: {self.id} - Employee ID: {self.employee}"
+        return f"TransferCash: {self.id} - Employee: {self.employee}"
+
+
+
+
 
 
 class PayrollDeduction(models.Model):
