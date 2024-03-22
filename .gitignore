@@ -1,3 +1,19 @@
+
+# Archivos de configuración local
+*.env
+*.pyc
+
+# Directorio de archivos estáticos generados
+staticfiles/
+
+# Directorio de archivos de compilación
+node_modules/
+bower_components/
+
+# Archivo de base de datos local
+db.sqlite3
+
+
 gitignore:
   - .gitignore
   - .git/
