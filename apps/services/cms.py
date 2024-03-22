@@ -9,8 +9,8 @@ import os
 
 class CMS:
 
-    __base_url = os.environ.get("STORYBLOK_BASE_URL")
-    __access_token = os.environ.get("STORYBLOK_ACCESS_TOKEN")
+    __base_url = os.environ.get("CMS_BASE_URL")
+    __access_token = os.environ.get("CMS_ACCESS_TOKEN")
     __headers = {"Accept": "application/json", "Content-Type": "application/json"}
 
     @staticmethod
