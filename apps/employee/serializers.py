@@ -47,8 +47,11 @@ class EmployeeSerializer(serializers.ModelSerializer):
         read_only_fields = ['id']
         
         
+        # Instancia de la clase Employee
         def create(self, validated_data):
-            return Employee.objects.create(**validated_data)
+            employee_instance = Employee.objects.create(**validated_data)
+            return employee_instance
+        
 
 
 class SalaryIncreaseSerializer(serializers.ModelSerializer):
