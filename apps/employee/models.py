@@ -142,7 +142,7 @@ class SalaryIncrease(models.Model):
     
 class RequestAbsenceModel(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE) 
-    company = models.IntegerField() #FK 
+    company = models.ForeignKey(Company, on_delete=models.CASCADE) #FK 
     start_date = models.DateField()
     end_date = models.DateField()
     reason = models.CharField( max_length=200)
