@@ -16,6 +16,7 @@ import os
 import environ
 from datetime import timedelta
 
+
 env = environ.Env()
 environ.Env.read_env()
 
@@ -25,8 +26,6 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='secret!')
 
 ALLOWED_HOSTS = ['*']
 
-
-
 DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -34,27 +33,21 @@ DJANGO_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
     'corsheaders',
-=======
-    'apps.employee',
-    'corsheaders',
-    'apps.user',
-    'apps.company',
+    #'apps.employee',
+    #'apps.user',
+    #'apps.company',
     # 'rest_framework',
     # 'apps.company',
->>>>>>> feature/module-employee
 ]
 
 # Se definen las aplicaciones del proyecto
 PROJECT_APPS = [
-<<<<<<< HEAD
-    # 'apps.company'
+    'apps.company',
     'apps.payrolls',
     'apps.employee',
-=======
+    'apps.user',
 
->>>>>>> feature/module-employee
 ]
 
 # Se definen las aplicaciones de terceros
@@ -98,7 +91,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-DEBUG = bool(os.environ.get('DEBUG', True))
+DEBUG = bool(os.environ.get('DEBUG', False))
 
 if DEBUG:
     # Configuración de la base de datos para entorno de desarrollo
@@ -123,20 +116,13 @@ else:
     #agregar cuando este en true
 
 # Se configuran las opciones de CORS
-<<<<<<< HEAD
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',
-    'http://127.0.0.1:5173',
-    'http://localhost:3000',
-    'http://127.0.0.1:3000',
-]
-=======
+    
     CORS_ALLOWED_ORIGINS = [
-        
+        'http://localhost:5173',
+        'http://127.0.0.1:5173',
         'http://localhost:3000',
         'http://127.0.0.1:3000',
     ]
->>>>>>> feature/module-employee
 
 
     CORS_ORIGIN_WHITELIST = [
@@ -211,7 +197,6 @@ REST_FRAMEWORK = {
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-<<<<<<< HEAD
-=======
+
 AUTH_USER_MODEL = 'user.User'
->>>>>>> feature/module-employee
+
