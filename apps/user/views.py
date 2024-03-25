@@ -1,5 +1,6 @@
 from .models import User
 from .serializers import UserSerializer
+from .serializers import CustomUserSerializer
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -100,11 +101,11 @@ class Login(APIView):
         password = request.data.get('password')
 
         user = authenticate(email=email, password=password)
-
         if user is not None:
+            serializer = CustomUserSerializer(user)
             Token.objects.filter(user=user).delete()
             token = Token.objects.create(user=user)
-            return Response({"token": token.key}, status=status.HTTP_200_OK)
+            return Response({"token": token.key, "user": serializer.data}, status=status.HTTP_200_OK)
         else:
             return Response({"message": "Invalid credentials"}, status=status.HTTP_404_NOT_FOUND)
         
@@ -138,6 +139,21 @@ class ResetPassword(APIView):
         user.password = make_password(password)
         user.save()
         
-        return Response({"message": "Successful password change", "token": token.key}, status=status.HTTP_204_NO_CONTENT)
+        return Response({"token": token.key}, status=status.HTTP_200_OK)
+    
+
+class VerifyAccount(APIView):
+    def post(self, request):
+        email = request.data.get('email')
+        user = User.objects.filter(email=email).exists()
+        if user:
+            return Response({'exist': True}, status=status.HTTP_200_OK)
+        else:
+            return Response({'exist': False}, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+        
+
 
 

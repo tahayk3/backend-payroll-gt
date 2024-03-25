@@ -35,6 +35,7 @@ class User(AbstractUser):
         self.company = instance_company
         self.email = email
         self.username = instance_company.name
+        self.picture = instance_company.picture
         self.role = 'admin'
         self.is_default_password = False
         self.password = make_password(password)
