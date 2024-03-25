@@ -1,6 +1,8 @@
 from django.db import models
 
 from apps.employee.models import Employee
+from apps.company.models import Company
+
 
 class PayrollPeriod(models.Model):
     """Payroll Period model"""
@@ -8,7 +10,7 @@ class PayrollPeriod(models.Model):
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
     type = models.CharField(max_length=100)
-    company = models.IntegerField(default=0, blank=True)  # Foreign key
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)  # Foreign key
     is_open = models.BooleanField(default=False)
 
     def __str__(self):
@@ -60,10 +62,6 @@ class TransferCash(models.Model):
         return f"TransferCash: {self.id} - Employee: {self.employee}"
 
 
-
-
-
-
 class PayrollDeduction(models.Model):
     """Payroll Deduction model"""
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
@@ -96,7 +94,7 @@ class PayrollIncome(models.Model):
 
 class Payroll(models.Model):
     """Payroll model"""
-    company = models.IntegerField(default=0) # company
+    company = models.ForeignKey(Company, on_delete=models.CASCADE) # company
     payroll_period = models.ForeignKey(PayrollPeriod, on_delete=models.CASCADE)
 
     date_generated = models.DateTimeField()
@@ -112,7 +110,7 @@ class PayrollConcept(models.Model):
 
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE) # foreign key
     payroll_period = models.ForeignKey(PayrollPeriod, on_delete=models.CASCADE)
-    company = models.IntegerField(default=0) # foreign key
+    company = models.ForeignKey(Company, on_delete=models.CASCADE) # foreign key
 
     date = models.DateTimeField()
     reason = models.CharField(max_length=100)

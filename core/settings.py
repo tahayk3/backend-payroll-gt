@@ -34,7 +34,6 @@ DJANGO_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders',
     'apps.employee',
     'corsheaders',
     'apps.user',
@@ -47,8 +46,6 @@ DJANGO_APPS = [
 PROJECT_APPS = [
     # 'apps.company'
     'apps.payrolls',
-    'apps.employee',
-
 ]
 
 # Se definen las aplicaciones de terceros
