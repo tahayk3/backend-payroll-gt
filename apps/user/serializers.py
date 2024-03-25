@@ -31,3 +31,9 @@ class UserSerializer(serializers.ModelSerializer):
             instance.password = make_password('12345')
         instance.save()
         return instance
+    
+
+class CustomUserSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = User
+            fields = ['email', 'username', 'picture']
