@@ -17,6 +17,6 @@ RUN apk update \
   # https://docs.djangoproject.com/en/dev/ref/django-admin/#dbshell
   && apk add postgresql-client
 WORKDIR /code
-COPY requirements/requirements.txt /code/
-RUN python -m pip install -r requirements.txt
+COPY requirements/requirements_local.txt /code/
+RUN python -m pip install -r requirements_local.txt
 COPY . /code/
