@@ -172,10 +172,13 @@ class JobPositionViewSet(viewsets.ModelViewSet):
 
 
 class RequestAbsenceViewSet(viewsets.ModelViewSet):
-    queryset = RequestAbsenceModel.objects.all()
     serializer_class = RequestAbsenceSerializer
     permission_classes = [permissions.AllowAny] #Cambiar a IsAuthenticated
 
+    def get_queryset(self):
+        # Filtrar los requestAbsence by is_active
+        queryset = RequestAbsenceModel.objects.filter(is_active=True)
+        return queryset
 
     def create(self, request, *args, **kwargs):
         # Validar si el empleado existe
@@ -183,4 +186,3 @@ class RequestAbsenceViewSet(viewsets.ModelViewSet):
         if not Employee.objects.filter(id=employee_id).exists():
             return Response({'error': 'El empleado especificado no existe'}, status=status.HTTP_400_BAD_REQUEST)
         return super().create(request, *args, **kwargs)
-
