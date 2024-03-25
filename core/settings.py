@@ -91,27 +91,17 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DEBUG = bool(os.environ.get('DEBUG', True))
 
-if DEBUG:
-    # Configuración de la base de datos para entorno de desarrollo
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
-else:
-    # Configuración de la base de datos para entorno de producción
-    DATABASES = {
-        'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get("DB_NAME"),
-        'USER': os.environ.get("DB_USER"),
-        'PASSWORD': os.environ.get("DB_PASSWORD"),
-        'HOST': os.environ.get("DB_HOST"),
-        'PORT': os.environ.get("DB_PORT"),
-        }
-    }
-    #agregar cuando este en true
+
+DATABASES = {
+    'default': {
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': os.environ.get("DB_NAME"),
+    'USER': os.environ.get("DB_USER"),
+    'PASSWORD': os.environ.get("DB_PASSWORD"),
+    'HOST': os.environ.get("DB_HOST"),
+    'PORT': os.environ.get("DB_PORT"),
+    },
+}
 
 # Se configuran las opciones de CORS
 CORS_ALLOWED_ORIGINS = [
