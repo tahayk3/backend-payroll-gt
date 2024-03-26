@@ -16,6 +16,7 @@ import os
 import environ
 from datetime import timedelta
 
+
 env = environ.Env()
 environ.Env.read_env()
 
@@ -24,8 +25,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', default='secret!')
 
 ALLOWED_HOSTS = ['*']
-
-
 
 DJANGO_APPS = [
     'django.contrib.admin',
@@ -38,14 +37,22 @@ DJANGO_APPS = [
     'corsheaders',
     'apps.user',
     'apps.company',
+    'corsheaders',
+    #'apps.employee',
+    #'apps.user',
+    #'apps.company',
     # 'rest_framework',
     # 'apps.company',
 ]
 
 # Se definen las aplicaciones del proyecto
 PROJECT_APPS = [
+    'apps.company',
     # 'apps.company'
     'apps.payrolls',
+    'apps.employee',
+    'apps.user',
+
 ]
 
 # Se definen las aplicaciones de terceros
@@ -89,7 +96,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-DEBUG = bool(os.environ.get('DEBUG', True))
+DEBUG = bool(os.environ.get('DEBUG', False))
 
 
 DATABASES = {
@@ -104,6 +111,13 @@ DATABASES = {
 }
 
 # Se configuran las opciones de CORS
+    
+    CORS_ALLOWED_ORIGINS = [
+        'http://localhost:5173',
+        'http://127.0.0.1:5173',
+        'http://localhost:3000',
+        'http://127.0.0.1:3000',
+    ]
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     'http://127.0.0.1:5173',
@@ -185,5 +199,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
+
 AUTH_USER_MODEL = 'user.User'
+
 
