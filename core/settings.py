@@ -35,19 +35,11 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
     'apps.employee',
     'corsheaders',
-    'apps.user',
-    'apps.company',
-    #'apps.employee',
-    #'apps.user',
-    #'apps.company',
-    # 'rest_framework',
-    # 'apps.company',
 ]
 
 # Se definen las aplicaciones del proyecto
 PROJECT_APPS = [
     'apps.company',
-    # 'apps.company'
     'apps.payrolls',
     'apps.employee',
     'apps.user',
