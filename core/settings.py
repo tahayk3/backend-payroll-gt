@@ -37,7 +37,6 @@ DJANGO_APPS = [
     'corsheaders',
     'apps.user',
     'apps.company',
-    'corsheaders',
     #'apps.employee',
     #'apps.user',
     #'apps.company',
