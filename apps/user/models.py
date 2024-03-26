@@ -16,7 +16,7 @@ class User(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
-    role = models.CharField(max_length=50, null=True)
+    role = models.CharField(max_length=255, null=True)
     picture = models.TextField(blank= True, null=True)
     password = models.CharField(max_length=50, blank=True, null=True)
     company = models.ForeignKey(Company,on_delete=models.CASCADE,related_name='user', null=True)
