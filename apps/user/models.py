@@ -18,7 +18,7 @@ class User(AbstractUser):
 
     role = models.CharField(max_length=255, null=True)
     picture = models.TextField(blank= True, null=True)
-    password = models.CharField(max_length=255, blank=True, null=True)
+    password = models.TextField(blank=True, null=True)
     company = models.ForeignKey(Company,on_delete=models.CASCADE,related_name='user', null=True)
     is_active = models.BooleanField(default=True)
     is_default_password = models.BooleanField(default=True) 
@@ -32,6 +32,7 @@ class User(AbstractUser):
         Returns:
             User: El nuevo usuario creado con rol de 'admin'.
         """
+        print("La contraseña es:"+password)
         self.company = instance_company
         self.email = email
         self.username = instance_company.name
@@ -39,6 +40,7 @@ class User(AbstractUser):
         self.role = 'admin'
         self.is_default_password = False
         self.password = make_password(password)
+        print("La contraseña con hash es:")
         self.save()
         return self
     
