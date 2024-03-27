@@ -5,9 +5,7 @@ from apps.company.models import Company
 from .permissions.company import IsCompanySuperAdmin
 
 
-
 from apps.user.models import User
-
 
 class CompanyViewSet(viewsets.ModelViewSet):
     queryset = Company.objects.all()
