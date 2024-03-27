@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY', default='secret!')
 
-ALLOWED_HOSTS = ['front-ev.onrender.com']
+ALLOWED_HOSTS = ['https://front-ev.onrender.com']
 
 DJANGO_APPS = [
     'django.contrib.admin',
@@ -107,14 +107,14 @@ CORS_ALLOWED_ORIGINS = [
         'http://127.0.0.1:5173',
         'http://localhost:3000',
         'http://127.0.0.1:3000',
-        'front-ev.onrender.com',
+        'https://front-ev.onrender.com',
     ]
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     'http://127.0.0.1:5173',
     'http://localhost:3000',
     'http://127.0.0.1:3000',
-    'front-ev.onrender.com',
+    'https://front-ev.onrender.com',
 ]
 
 
@@ -123,7 +123,7 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost:8000',
     'http://127.0.0.1:8000',
     'http://127.0.0.1:3000',
-    'front-ev.onrender.com',
+    'https://front-ev.onrender.com',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -131,7 +131,7 @@ CSRF_TRUSTED_ORIGINS = [
     'http://localhost:8000',
     'http://127.0.0.1:8000',
     'http://127.0.0.1:3000',
-    'front-ev.onrender.com',
+    'https://front-ev.onrender.com',
 ]
 
 PASSWORD_HASHERS = [
